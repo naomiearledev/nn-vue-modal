@@ -1,17 +1,18 @@
 <template>
-  <div class="backdrop">
-    <div class="modal">
-        <h2>{{ title }}</h2>
-        <p>Modal content</p>
+  <div class="backdrop" @click.self="closeModal">
+    <div class="modal" :class="{ sale: theme === 'sale', dark: theme === 'dark' }">
+        <h1>{{ header }}</h1>
+        <p>{{ text }}</p>
     </div>
   </div>
 </template>
 
 <script>
 export default {
-    data() {
-        return {
-            title: 'Modal Component'
+    props: ['header', 'text', 'theme'],
+    methods: {
+        closeModal() {
+            this.$emit('close')
         }
     }
 }
@@ -31,5 +32,19 @@ export default {
     background: rgba(0,0,0,0.5);
     width: 100%;
     height: 100%;
+}
+.modal.sale {
+    background: crimson;
+    color: white;
+}
+.modal.sale h1 {
+    color: white;
+}
+.modal.dark {
+    background: black;
+    color: white;
+}
+.modal.dark h1 {
+    color: crimson;
 }
 </style>
