@@ -1,7 +1,9 @@
 <template>
+
   <h1>{{ title }}</h1>
-  <div v-if="showModal">
-    <Modal :theme="modalTheme" @close="toggleModal">
+
+  <div v-if="showModal1">
+    <Modal :theme="modalTheme1" @close="toggleModal1">
       <template v-slot:links>
         <a href="#">Sign up for piano lessons</a>
         <a href="#">Sign up for singing lessons</a>
@@ -10,7 +12,23 @@
       <p>Half price for all items purchased before 4pm on 31st September</p>
     </Modal>
   </div>
-  <button @click.alt="toggleModal">Show Modal (option)</button>
+
+  <div v-if="showModal2">
+    <Modal :theme="modalTheme2" @close="toggleModal2">
+      <template v-slot:links>
+        <a href="#">Click here to die!</a>
+        <a href="#">Click here to live!</a>
+      </template>
+      <h1>Do you want to live or die?</h1>
+      <p>Make your choice by clicking on of the buttons</p>
+    </Modal>
+  </div>
+
+  <div class="buttons">
+    <button @click="toggleModal1">Show Modal 1</button>
+    <button @click="toggleModal2">Show Modal 2</button>
+  </div>
+
 </template>
 
 <script>
@@ -22,15 +40,18 @@ export default {
   data() {
     return {
       title: 'My first vue app',
-      header: 'Sign up for the Giveaway!',
-      text: 'Join us on patreon or locals to enter',
-      modalTheme: 'dark',
-      showModal: false
+      modalTheme1: 'sale',
+      modalTheme2: 'dark',
+      showModal1: false,
+      showModal2: false
     }
   },
   methods: {
-    toggleModal() {
-      this.showModal = !this.showModal
+    toggleModal1() {
+      this.showModal1 = !this.showModal1
+    },
+    toggleModal2() {
+      this.showModal2 = !this.showModal2
     }
   }
 }
@@ -44,5 +65,8 @@ export default {
   text-align: center;
   color: #2c3e50;
   margin-top: 60px;
+}
+.buttons button {
+  margin-left: 10px;
 }
 </style>
