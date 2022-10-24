@@ -1,7 +1,14 @@
 <template>
   <h1>{{ title }}</h1>
   <div v-if="showModal">
-    <Modal :header="header" :text="text" :theme="modalTheme" @close="toggleModal" />
+    <Modal :theme="modalTheme" @close="toggleModal">
+      <template v-slot:links>
+        <a href="#">Sign up for piano lessons</a>
+        <a href="#">Sign up for singing lessons</a>
+      </template>
+      <h1>Payday Sale!</h1>
+      <p>Half price for all items purchased before 4pm on 31st September</p>
+    </Modal>
   </div>
   <button @click.alt="toggleModal">Show Modal (option)</button>
 </template>
